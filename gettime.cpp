@@ -1,5 +1,18 @@
 
 #if 0
+//要包含这头文件<time.h>
+//且在编译链接时需加上 -lrt ;因为在librt中实现了clock_gettime函数。
+unsigned long GetTickCount()
+{
+    struct timespec ts;
+
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+
+    return (ts.tv_sec * 1000 + ts.tv_nsec / 1000000);
+
+}
+
+
 typedef unsigned long  DWORD
 #include <time.h>
 DWORD GetTickCount(void)
